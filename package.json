@@ -2,7 +2,7 @@
 	"name": "github-explorer",
 	"displayName": "GitHub File Explorer",
 	"description": "Explore GitHub Repos from VSCode without cloning",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"publisher": "cdonke",
 	"engines": {
 		"vscode": "^1.46.0"
