@@ -1,7 +1,5 @@
 # github-explorer
 
-This is the README for your extension "github-explorer". 
-
 ---
 
 Explore GitHub Repositories from [Visual Studio Code](https://code.visualstudio.com/) without cloning it.
