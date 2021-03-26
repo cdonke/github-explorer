@@ -8,7 +8,7 @@
 		"vscode": "^1.46.0"
 	},
 	"categories": [
-		"Other", 
+		"Other",
 		"Extension Packs",
 		"Programming Languages",
 		"Visualization"
@@ -37,20 +37,20 @@
 		"treeview",
 		"files"
 	],
-	"main": "./out/extension.js",	
+	"main": "./out/extension.js",
 	"contributes": {
-		"configuration":[
+		"configuration": [
 			{
 				"title": "GitHub Explorer",
 				"properties": {
-					"gitHubExplorer.authentication.username":{
-						"type":"string",
-						"default":"",
+					"gitHubExplorer.authentication.username": {
+						"type": "string",
+						"default": "",
 						"description": "Username for GitHub Authentication"
 					},
-					"gitHubExplorer.authentication.personalAccessToken":{
-						"type":"string",
-						"default":"",
+					"gitHubExplorer.authentication.personalAccessToken": {
+						"type": "string",
+						"default": "",
 						"description": "Personal Access Token for GitHub Authentication"
 					}
 				}
@@ -138,7 +138,7 @@
 						"dark": "resources/dark/refresh.svg",
 						"light": "resources/light/refresh.svg"
 					}
-				}						
+				}
 			]
 		}
 	},

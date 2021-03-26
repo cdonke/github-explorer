@@ -1,20 +1,20 @@
-import { Kind, IGitHub } from "./types"
+import { Kind, IGitHub } from "./types";
 
-import { Repository } from "./repositories"
+import { Repository } from "./repositories";
 import { Branches } from "./branches";
 import { Contents } from "./contents";
 
-export function Factory(type:Kind): IGitHub{
+export function factory(type:Kind): IGitHub{
   switch(type){
-    case Kind.Repository:
+    case Kind.repository:
       return new Repository();
 
-    case Kind.Branch:
+    case Kind.branch:
       return new Branches();
 
-    case Kind.Content:
-    case Kind.File:
-    case Kind.Folder:
+    case Kind.content:
+    case Kind.file:
+    case Kind.folder:
       return new Contents();
   }
 

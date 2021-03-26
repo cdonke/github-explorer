@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
 
 import { LocalStorageService } from './utils/LocalStorageService';
-import httpClient  from './utils/httpClient'
-import { Statics } from './utils/statics'
-import { CreateFolder, WriteFile, BuildPath } from './utils/filesystem'
+import httpClient  from './utils/httpClient';
+import { Statics } from './utils/statics';
+import { createFolder, writeFile, buildPath } from './utils/filesystem';
 
-import { Kind, Metadata } from './github/types'
-import { Factory } from './github/factory'
+import { Kind, Metadata } from './github/types';
+import { factory } from './github/factory';
 import { Node } from './Node';
 
 export class GitHubProvider implements vscode.TreeDataProvider<Node> {
@@ -31,10 +31,10 @@ export class GitHubProvider implements vscode.TreeDataProvider<Node> {
 
 	getChildren(element?: Node): Thenable<Node[]> {
     return new Promise(resolve => {
-      if (element?.Metadata){
+      if (element?.metadata){
 
-          Factory(element.Metadata.type)
-            .FetchChildren(element.Metadata)
+          factory(element.metadata.type)
+            .fetchChildren(element.metadata)
             .then((metadata:Metadata[]) => 
               resolve( metadata.map( (obj) => new Node(obj)) )
             );
@@ -51,7 +51,7 @@ export class GitHubProvider implements vscode.TreeDataProvider<Node> {
       prompt: "Please enter the GitHub URL or Git Clone address"
     });
     if (repositoryUrl) { 
-      let repositoryData = await Factory(Kind.Repository).Fetch(repositoryUrl);
+      let repositoryData = await factory(Kind.repository).fetch(repositoryUrl);
 
       if (repositoryData) {
         this.repositories.push(new Node(repositoryData[0]));
@@ -70,16 +70,17 @@ export class GitHubProvider implements vscode.TreeDataProvider<Node> {
   }
 
   async openDocument(element: Metadata): Promise<void> {
-    if (!element.url)
+    if (!element.url) {
       return Promise.resolve();
+    }
 
-    const tmpPath = BuildPath(Statics.TEMPFOLDER, element.relativePath);
-    const targetFile = BuildPath(tmpPath, element.label);
+    const tmpPath = buildPath(Statics.TEMPFOLDER, element.relativePath);
+    const targetFile = buildPath(tmpPath, element.label);
     
-    await CreateFolder(tmpPath); 
+    await createFolder(tmpPath); 
 
-    var response = await httpClient.downloadFile(element.url, { responseType: 'stream' }) 
-    WriteFile(targetFile, response.data, async () =>{
+    var response = await httpClient.downloadFile(element.url, { responseType: 'stream' });
+    writeFile(targetFile, response.data, async () =>{
       let uri = vscode.Uri.file(targetFile);
       await vscode.commands.executeCommand('vscode.open', uri);
     });    

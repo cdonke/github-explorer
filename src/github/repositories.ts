@@ -1,33 +1,35 @@
-import { vscodeLog as Log} from '../utils/logger'
+import { vscodeLog as Log} from '../utils/logger';
 import { Metadata, Kind, IGitHub } from "./types";
-import httpClient  from "../utils/httpClient"
+import httpClient  from "../utils/httpClient";
 import { URL } from "url";
-import { Factory } from './factory';
+import { factory } from './factory';
 
 
 export class Repository implements IGitHub {
-  private readonly childrenType: Kind = Kind.Branch;
-  public readonly type: Kind = Kind.Repository;
+  private readonly childrenType: Kind = Kind.branch;
+  public readonly type: Kind = Kind.repository;
     
   transformUrl(repoUrl:string): string {
     let url = new URL(repoUrl.replace('.git',''));
-    return `https://api.github.com/repos${url.pathname}`
+    return `https://api.github.com/repos${url.pathname}`;
   }
 
   
-  async FetchChildren(element:Metadata):Promise<Metadata[]> {
-    if (!element)
+  async fetchChildren(element:Metadata):Promise<Metadata[]> {
+    if (!element) {
       return [];
+    }
     
-    let next = Factory(this.childrenType);
-    let children:Metadata[] = await next.Fetch(element);
+    let next = factory(this.childrenType);
+    let children:Metadata[] = await next.fetch(element);
 
     return children;
   }
 
-  async Fetch(element: Metadata | string): Promise<Metadata[]> {
-    if (typeof element !== "string")
+  async fetch(element: Metadata | string): Promise<Metadata[]> {
+    if (typeof element !== "string") {
       return [];
+    }
 
 
     let repoData:any;
@@ -35,7 +37,7 @@ export class Repository implements IGitHub {
       repoData = await httpClient.get(this.transformUrl(element as string));
     }
     catch(e) {
-      Log.Error(e.message);
+      Log.error(e.message);
       return [];
     }
   
@@ -44,7 +46,7 @@ export class Repository implements IGitHub {
       owner: repoData.data.owner.login,
       repository: repoData.data.name,
       branch: repoData.data.default_branch,
-      type: Kind.Repository,
+      type: Kind.repository,
       relativePath: `${repoData.data.owner.login}/${repoData.data.name}`
     }];
   }

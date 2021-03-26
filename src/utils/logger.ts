@@ -1,26 +1,26 @@
-import { window } from 'vscode'
+import { window } from 'vscode';
 
 export interface ILogger {
-  Error(message:string):void;
-  Info(message:string):void;
-}
+  error(message:string):void;
+  info(message:string):void;
+};
 
 class VSCodeLog implements ILogger {
-  Error(message:string){
+  error(message:string){
     window.showErrorMessage(message);
   }
 
-  Info(message:string){  
+  info(message:string){  
     window.showInformationMessage(message);
   }
 }
 
 class ConsoleLog implements ILogger {
-  Error(message:string){
+  error(message:string){
     console.error(message);
   }
 
-  Info(message:string){  
+  info(message:string){  
     console.info(message);
   }
 }

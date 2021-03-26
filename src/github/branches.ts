@@ -1,15 +1,15 @@
-import { vscodeLog as Log} from '../utils/logger'
+import { vscodeLog as Log} from '../utils/logger';
 import { Metadata, Kind, IGitHub } from "./types";
-import httpClient  from "../utils/httpClient"
-import { Factory } from './factory';
+import httpClient  from "../utils/httpClient";
+import { factory } from './factory';
 
 export class Branches implements IGitHub {
-  public readonly type: Kind = Kind.Branch;
-  private readonly childrenType: Kind = Kind.Content;
+  public readonly type: Kind = Kind.branch;
+  private readonly childrenType: Kind = Kind.content;
   
-  async FetchChildren(element:Metadata): Promise<Metadata[]> {   
-    let next = Factory(this.childrenType);
-    let children:Metadata[] | undefined = await next.Fetch(element);
+  async fetchChildren(element:Metadata): Promise<Metadata[]> {   
+    let next = factory(this.childrenType);
+    let children:Metadata[] | undefined = await next.fetch(element);
 
     return children;
   }
@@ -18,9 +18,10 @@ export class Branches implements IGitHub {
     return `https://api.github.com/repos/${obj.owner}/${obj.repository}/branches?per_page=100&page=${page}`;
   }
 
-  async Fetch(element: string | Metadata): Promise<Metadata[]> {
-    if (typeof element === "string")
+  async fetch(element: string | Metadata): Promise<Metadata[]> {
+    if (typeof element === "string") {
       return [];
+    }
 
     let data:any[]=[];
     let response:any;
@@ -31,10 +32,10 @@ export class Branches implements IGitHub {
         response = await httpClient.get(this.buildUrl(element, i++));
         data.push(...response.data);
       }
-      while (response.data.length > 0)
+      while (response.data.length > 0);
     }
     catch(e) {
-      Log.Error(e.message);
+      Log.error(e.message);
       return Promise.resolve([]);
     }
 
@@ -45,9 +46,9 @@ export class Branches implements IGitHub {
           owner: element.owner,   
           repository: element.repository, 
           branch: o.name,
-          type: Kind.Branch,
+          type: Kind.branch,
           relativePath: `${element.relativePath}/${o.name}`
-        }
+        }; 
       });
 
       return branches;

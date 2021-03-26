@@ -3,8 +3,8 @@
 
 import { workspace, WorkspaceConfiguration } from 'vscode';
 import axios, { AxiosInstance, AxiosPromise } from 'axios';
-import { consoleLog as Log, vscodeLog as UserLog } from './logger'
-import { Statics } from './statics'
+import { consoleLog as Log, vscodeLog as UserLog } from './logger';
+import { Statics } from './statics';
 
 type Authentication = {
   username?: string,
@@ -20,17 +20,17 @@ class HttpClient {
     this.auth = {
       username: this._configuration.get(Statics.CONFIGURATION_USERNAME),
       password:  this._configuration.get(Statics.CONFIGURATION_PASSWORD),
-    }
+    };
   }
 
   async get(url:string, config?:any): Promise<any>{
-    Log.Info(`Sending GET request to ${url}`);
+    Log.info(`Sending GET request to ${url}`);
 
     try {
       return await this._httpClient.get(url, {...config, auth: this.auth});
     }
     catch(e){
-      UserLog.Error(e.response.data.message); 
+      UserLog.error(e.response.data.message); 
     }
   }
 

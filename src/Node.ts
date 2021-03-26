@@ -1,16 +1,16 @@
 import * as vscode from 'vscode';
 import { Kind, Metadata } from './github/types';
-import { BuildPath } from './utils/filesystem';
+import { buildPath } from './utils/filesystem';
 
 
 export class Node extends vscode.TreeItem {
   constructor(
-    public readonly Metadata: Metadata,
+    public readonly metadata: Metadata,
     public readonly command?: vscode.Command
   ) {
     super(
-      Metadata?.label || "Unknown",
-      Metadata?.type == Kind.File || Metadata?.type == Kind.None ?
+      metadata?.label || "Unknown",
+      metadata?.type === Kind.file || metadata?.type === Kind.none ?
         vscode.TreeItemCollapsibleState.None :
         vscode.TreeItemCollapsibleState.Collapsed
     );
@@ -18,11 +18,11 @@ export class Node extends vscode.TreeItem {
     this.tooltip = `${this.label}`;
 
 
-    if (Metadata.type == Kind.File) {
+    if (metadata.type === Kind.file) {
       this.command = {
         command: 'github-explorer-view.openDocument',
         title: '',
-        arguments: [Metadata]
+        arguments: [metadata]
       };
     }
 
@@ -31,24 +31,24 @@ export class Node extends vscode.TreeItem {
   }
 
   setContext(): void {
-    switch (this.Metadata.type) {
-      case Kind.File:
+    switch (this.metadata.type) {
+      case Kind.file:
         this.contextValue = "file";
         break;
 
-      case Kind.Folder:
+      case Kind.folder:
         this.contextValue = "folder";
         break;
 
-      case Kind.Branch:
+      case Kind.branch:
         this.contextValue = "branch";
         break;
 
-      case Kind.Content:
+      case Kind.content:
         this.contextValue = "content";
         break;
 
-      case Kind.Repository:
+      case Kind.repository:
         this.contextValue = "repository";
         break;
 
@@ -60,8 +60,8 @@ export class Node extends vscode.TreeItem {
 
   setIcon() {
     this.iconPath = {
-      light: BuildPath(__filename, '..', '..', 'resources', 'light', `${this.contextValue}.svg`),
-      dark: BuildPath(__filename, '..', '..', 'resources', 'dark', `${this.contextValue}.svg`)
+      light: buildPath(__filename, '..', '..', 'resources', 'light', `${this.contextValue}.svg`),
+      dark: buildPath(__filename, '..', '..', 'resources', 'dark', `${this.contextValue}.svg`)
     };
   }
 }

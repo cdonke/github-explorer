@@ -1,10 +1,10 @@
 export enum Kind {
-  Repository,
-  Folder,
-  File,
-  Branch,
-  Content,
-  None
+  repository,
+  folder,
+  file,
+  branch,
+  content,
+  none
 }
 
 export type Metadata = {
@@ -15,11 +15,11 @@ export type Metadata = {
   branch?: string;
   url?: string
   relativePath: string
-}
+};
 
 export interface IGitHub {
   type: Kind,
 
-  FetchChildren(element:Metadata):Promise<Metadata[]>,
-  Fetch(element:Metadata | string): Promise<Metadata[]>;
+  fetchChildren(element:Metadata):Promise<Metadata[]>,
+  fetch(element:Metadata | string): Promise<Metadata[]>;
 }
