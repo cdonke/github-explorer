@@ -1,0 +1,169 @@
+{
+	"name": "github-explorer",
+	"displayName": "GitHub File Explorer",
+	"description": "Explore GitHub Repos from VSCode without cloning",
+	"version": "0.0.1",
+	"publisher": "cdonke",
+	"engines": {
+		"vscode": "^1.46.0"
+	},
+	"categories": [
+		"Other", 
+		"Extension Packs",
+		"Programming Languages",
+		"Visualization"
+	],
+	"activationEvents": [
+		"onView:github-explorer-view",
+		"onCommand:github-explorer-view.addRepository"
+	],
+	"author": {
+		"name": "Christiano Donke",
+		"email": "cdonke@outlook.com",
+		"url": "https://www.github.com/cdonke"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https:/github.com/cdonke/github-explorer"
+	},
+	"bugs": {
+		"url": "https:/github.com/cdonke/github-explorer/issues",
+		"email": "cdonke@outlook.com"
+	},
+	"keywords": [
+		"git",
+		"hub",
+		"explorer",
+		"treeview",
+		"files"
+	],
+	"main": "./out/extension.js",	
+	"contributes": {
+		"configuration":[
+			{
+				"title": "GitHub Explorer",
+				"properties": {
+					"gitHubExplorer.authentication.username":{
+						"type":"string",
+						"default":"",
+						"description": "Username for GitHub Authentication"
+					},
+					"gitHubExplorer.authentication.personalAccessToken":{
+						"type":"string",
+						"default":"",
+						"description": "Personal Access Token for GitHub Authentication"
+					}
+				}
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "github-explorer",
+					"title": "GitHub Explorer",
+					"icon": "resources/dep.png"
+				}
+			]
+		},
+		"views": {
+			"github-explorer": [
+				{
+					"id": "github-explorer-view",
+					"name": "GitHub Explorer"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "github-explorer-view.addRepository",
+				"title": "GitHub Explorer: Add Repository",
+				"icon": {
+					"dark": "resources/dark/addrepository.svg",
+					"light": "resources/light/addrepository.svg"
+				}
+			},
+			{
+				"command": "github-explorer-view.removeRepository",
+				"title": "Remove",
+				"icon": {
+					"dark": "resources/dark/remove.svg",
+					"light": "resources/light/remove.svg"
+				}
+			},
+			{
+				"command": "github-explorer-view.refreshRepository",
+				"title": "Refresh",
+				"icon": {
+					"dark": "resources/dark/refresh.svg",
+					"light": "resources/light/refresh.svg"
+				}
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "github-explorer-view.addRepository",
+					"group": "navigation",
+					"when": "view == github-explorer-view",
+					"icon": {
+						"dark": "resources/dark/refresh.svg",
+						"light": "resources/light/refresh.svg"
+					}
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "github-explorer-view.removeRepository",
+					"group": "inline",
+					"when": "view == github-explorer-view && viewItem == repository",
+					"icon": {
+						"dark": "resources/dark/refresh.svg",
+						"light": "resources/light/refresh.svg"
+					}
+				},
+				{
+					"command": "github-explorer-view.refreshRepository",
+					"group": "inline",
+					"when": "view == github-explorer-view && viewItem == repository",
+					"icon": {
+						"dark": "resources/dark/refresh.svg",
+						"light": "resources/light/refresh.svg"
+					}
+				},
+				{
+					"command": "github-explorer-view.refreshRepository",
+					"group": "inline",
+					"when": "view == github-explorer-view && viewItem == branch",
+					"icon": {
+						"dark": "resources/dark/refresh.svg",
+						"light": "resources/light/refresh.svg"
+					}
+				}						
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/mkdirp": "^0.5.2",
+		"@types/node": "^12.12.0",
+		"@types/rimraf": "^2.0.2",
+		"@types/vscode": "^1.45.0",
+		"@typescript-eslint/eslint-plugin": "^4.16.0",
+		"@typescript-eslint/parser": "^4.16.0",
+		"eslint": "^7.21.0",
+		"typescript": "^4.2.2",
+		"path": "0.12.7",
+		"mocha": "8.3.2",
+		"glob": "7.1.6"
+	},
+	"dependencies": {
+		"axios": "^0.21.1"
+	}
+}

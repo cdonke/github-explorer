@@ -1,0 +1,41 @@
+@github = https://github.com
+@baseurl = https://api.github.com
+@rawBaseUrl = https://raw.githubusercontent.com
+@owner = cdonke
+@repo = BotFramework-Composer
+@branch = master
+
+# @name git
+GET {{github}}/{{owner}}/{{repo}}.git
+
+###
+
+# @name mainContent
+GET {{baseurl}}/repos/{{owner}}/{{repo}}/contents?ref={{branch}}
+Accept: application/vnd.github.v3+json
+
+###
+
+# @name folder
+GET {{baseurl}}/repos/{{owner}}/{{repo}}/contents/Algorithms?ref={{branch}}
+Accept: application/vnd.github.v3+json
+
+###
+
+# @name file
+GET {{baseurl}}/repos/{{owner}}/{{repo}}/contents/.github?ref={{branch}}
+Accept: application/vnd.github.v3+json
+
+###
+
+# @name fileContent
+GET {{rawBaseUrl}}/{{owner}}/{{repo}}/{{branch}}/Algorithms/README.md
+Accept: application/vnd.github.v3+json
+
+### @name RepoDetails
+GET {{baseurl}}/repos/{{owner}}/{{repo}}
+Accept: application/vnd.github.v3+json
+
+### @name Branches
+GET {{baseurl}}/repos/{{owner}}/{{repo}}/branches
+Accept: application/vnd.github.v3+json
