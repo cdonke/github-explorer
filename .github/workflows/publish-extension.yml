@@ -24,8 +24,8 @@ jobs:
         with:
           node-version: 12
       - run: |
-        npm install
-        npm ci
+          npm install
+          npm ci
 
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v0
