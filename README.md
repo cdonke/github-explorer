@@ -1,5 +1,9 @@
 # github-explorer
 
+[![Version](https://vsmarketplacebadge.apphb.com/version/cdonke.github-explorer.svg)](https://marketplace.visualstudio.com/items?itemName=cdonke.github-explorer)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/cdonke.github-explorer.svg)](https://marketplace.visualstudio.com/items?itemName=cdonke.github-explorer)
+[![Ratings](https://vsmarketplacebadge.apphb.com/rating-star/cdonke.github-explorer.svg)](https://marketplace.visualstudio.com/items?itemName=cdonke.github-explorer)
+
 ---
 
 Explore GitHub Repositories from [Visual Studio Code](https://code.visualstudio.com/) without cloning it.
