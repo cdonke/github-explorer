@@ -32,7 +32,6 @@ export class GitHubProvider implements vscode.TreeDataProvider<Node> {
 	getChildren(element?: Node): Thenable<Node[]> {
     return new Promise(resolve => {
       if (element?.metadata){
-
           factory(element.metadata.kind)
             .fetchChildren(element.metadata)
             .then((metadata:Metadata[]) => 
