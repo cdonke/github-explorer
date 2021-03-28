@@ -47,7 +47,7 @@ export class GitHubProvider implements vscode.TreeDataProvider<Node> {
 
   async addRepository(): Promise<void> {
     const repositoryUrl = await vscode.window.showInputBox({
-      prompt: "Please enter the GitHub URL or Git Clone address"
+      prompt: "Please enter the GitHub URL (http://github.com....) or repository name (cdonke/github-explorer)"
     });
     if (repositoryUrl) { 
       let repositoryData = await factory(Kind.repository).fetch(repositoryUrl);
