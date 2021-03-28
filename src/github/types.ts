@@ -8,7 +8,7 @@ export enum Kind {
 }
 
 export type Metadata = {
-  type: Kind;
+  kind: Kind;
   label: string,
   owner: string,
   repository?: string;

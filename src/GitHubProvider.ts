@@ -33,7 +33,7 @@ export class GitHubProvider implements vscode.TreeDataProvider<Node> {
     return new Promise(resolve => {
       if (element?.metadata){
 
-          factory(element.metadata.type)
+          factory(element.metadata.kind)
             .fetchChildren(element.metadata)
             .then((metadata:Metadata[]) => 
               resolve( metadata.map( (obj) => new Node(obj)) )

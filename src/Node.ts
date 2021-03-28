@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 import { Kind, Metadata } from './github/types';
 import { buildPath } from './utils/filesystem';
 
-
 export class Node extends vscode.TreeItem {
   constructor(
     public readonly metadata: Metadata,
@@ -10,7 +9,7 @@ export class Node extends vscode.TreeItem {
   ) {
     super(
       metadata?.label || "Unknown",
-      metadata?.type === Kind.file || metadata?.type === Kind.none ?
+      metadata?.kind === Kind.file || metadata?.kind === Kind.none ?
         vscode.TreeItemCollapsibleState.None :
         vscode.TreeItemCollapsibleState.Collapsed
     );
@@ -18,7 +17,7 @@ export class Node extends vscode.TreeItem {
     this.tooltip = `${this.label}`;
 
 
-    if (metadata.type === Kind.file) {
+    if (metadata.kind === Kind.file) {
       this.command = {
         command: 'github-explorer-view.openDocument',
         title: '',
@@ -31,7 +30,7 @@ export class Node extends vscode.TreeItem {
   }
 
   setContext(): void {
-    switch (this.metadata.type) {
+    switch (this.metadata.kind) {
       case Kind.file:
         this.contextValue = "file";
         break;

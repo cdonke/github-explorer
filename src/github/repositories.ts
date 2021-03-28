@@ -46,7 +46,7 @@ export class Repository implements IGitHub {
       owner: repoData.data.owner.login,
       repository: repoData.data.name,
       branch: repoData.data.default_branch,
-      type: Kind.repository,
+      kind: Kind.repository,
       relativePath: `${repoData.data.owner.login}/${repoData.data.name}`
     }];
   }
