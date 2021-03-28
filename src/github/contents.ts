@@ -39,7 +39,7 @@ export class Contents implements IGitHub{
           owner: element.owner,   
           repository: element.repository, 
           branch: element.branch,
-          type: o.type === "file" ? Kind.file : Kind.folder,
+          kind: o.type === "file" ? Kind.file : Kind.folder,
           url: o.type === "file" ? o.download_url : `${element.url ?? ""}/${o.name}`,
           relativePath:  o.type === "file" ? element.relativePath : `${element.relativePath}/${o.name}`
         }; 

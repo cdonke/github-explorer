@@ -46,7 +46,7 @@ export class Branches implements IGitHub {
           owner: element.owner,   
           repository: element.repository, 
           branch: o.name,
-          type: Kind.branch,
+          kind: Kind.branch,
           relativePath: `${element.relativePath}/${o.name}`
         }; 
       });
