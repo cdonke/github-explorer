@@ -8,12 +8,18 @@
 
 Explore GitHub Repositories from [Visual Studio Code](https://code.visualstudio.com/) without cloning it.
 
+![Repository View](./docs/menu.png)
+
+Just click the `Add Repository` button, or call the command `GitHub Explorer: Add Repository`
+
+![Add Command](./docs/add-command.png)
+
 ## Installation
 
 To install the extension just execute the following command:
 
 ```sh
-ext install github-explorer
+code --install-extension cdonke.github-explorer
 ```
 
 ## License
