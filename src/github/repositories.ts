@@ -9,9 +9,25 @@ export class Repository implements IGitHub {
   private readonly childrenType: Kind = Kind.branch;
   public readonly type: Kind = Kind.repository;
     
+  isValidHttpUrl(repoUrl:string) {
+    let url;
+    
+    try {
+      url = new URL(repoUrl);
+    } catch (_) {
+      return false;  
+    }
+  
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
+
   transformUrl(repoUrl:string): string {
-    let url = new URL(repoUrl.replace('.git',''));
-    return `https://api.github.com/repos${url.pathname}`;
+    if (!this.isValidHttpUrl(repoUrl)) {
+      return `https://api.github.com/repos/${repoUrl}`;
+    } else {
+      let url = new URL(repoUrl.replace('.git',''));
+      return `https://api.github.com/repos${url.pathname}`;
+    }
   }
 
   
@@ -42,7 +58,7 @@ export class Repository implements IGitHub {
     }
   
     return [{
-      label: repoData.data.name,
+      label: `${repoData.data.owner.login}/${repoData.data.name}`,
       owner: repoData.data.owner.login,
       repository: repoData.data.name,
       branch: repoData.data.default_branch,
