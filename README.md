@@ -4,6 +4,12 @@
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/cdonke.github-explorer.svg)](https://marketplace.visualstudio.com/items?itemName=cdonke.github-explorer)
 [![Ratings](https://vsmarketplacebadge.apphb.com/rating-star/cdonke.github-explorer.svg)](https://marketplace.visualstudio.com/items?itemName=cdonke.github-explorer)
 
+[![Publish Extension](https://github.com/cdonke/github-explorer/actions/workflows/publish-extension.yml/badge.svg)](https://github.com/cdonke/github-explorer/actions/workflows/publish-extension.yml)
+
+
+[![Dependencies Status](https://david-dm.org/cdonke/github-explorer/status.svg)](https://david-dm.org/cdonke/github-explorer)
+[![DevDependencies Status](https://david-dm.org/cdonke/github-explorer/dev-status.svg)](https://david-dm.org/cdonke/github-explorer?type=dev)
+
 ---
 
 Explore GitHub Repositories from [Visual Studio Code](https://code.visualstudio.com/) without cloning it.

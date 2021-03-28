@@ -19,7 +19,7 @@ export const writeFile = async (targetFile:string, data:any, resolve:(args:any[]
   data.pipe(writer);
 
   return new Promise((innerResolve, reject) => {
-    writer.on('finish', (_) => { resolve(_); innerResolve(_); });
+    writer.on('finish', (_:any) => { resolve(_); innerResolve(_); });
     writer.on('error', () => {
       consoleLog.error(`Failed to open file ${targetFile}.`);
       reject();
