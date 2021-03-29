@@ -11,11 +11,11 @@
 
 Explore GitHub Repositories from [Visual Studio Code](https://code.visualstudio.com/) without cloning it.
 
-![Repository View](./docs/menu.png)
+![Repository View](https://github.com/cdonke/github-explorer/raw/main/docs/menu.png)
 
 Just click the `Add Repository` button, or call the command `GitHub Explorer: Add Repository`
 
-![Add Command](./docs/add-command.png)
+![Add Command](https://github.com/cdonke/github-explorer/raw/main/docs/add-command.png)
 
 ## Installation
 
