@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { workspace, WorkspaceConfiguration } from 'vscode';
-import axios, { AxiosInstance, AxiosPromise } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { consoleLog as Log, vscodeLog as UserLog } from './logger';
 import { Statics } from './statics';
 
