@@ -2,7 +2,7 @@
 	"name": "github-explorer",
 	"displayName": "GitHub File Explorer",
 	"description": "Explore GitHub Repos from VSCode without cloning",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"publisher": "cdonke",
 	"engines": {
 		"vscode": "^1.46.0"
@@ -143,7 +143,7 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
+		"vscode:prepublish": "npm install && npm run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
@@ -163,7 +163,7 @@
 		"typescript": "^4.2.2"
 	},
 	"dependencies": {
-		"axios": "^0.21.1",
+		"axios": "0.21.1",
 		"vscode-icons-js": "^11.1.0"
 	}
 }
